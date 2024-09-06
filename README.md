@@ -30,6 +30,7 @@ Sample generated in browser openned on mkspiffs.
 
 
 References:
+* https://github.com/wokwi/littlefs-wasm
 * https://github.com/earlephilhower/mklittlefs/tree/master
 * https://emscripten.org/docs/getting_started/downloads.html#installation-instructions-using-the-emsdk-recommended
 

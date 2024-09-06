@@ -1,5 +1,5 @@
 Mkittlefs in browser
-Why in browser? i want to make on the fly littlefs configuration and esptool flashing anywhere without on a static website.
+Why in browser? i want to make on the fly littlefs configuration and esptool flashing anywhere on a static website.
 
 Requirements:
 wsl, git in windows

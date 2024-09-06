@@ -25,7 +25,7 @@ Serve this under a webserver enable serving the application/wasm
 now you will get a download button served over the webserver
 you can edit `test.js` try changing the payload
 
-Sample generated in browser openned on mkspiffs.
+Sample config.json generated in browser openned on mkspiffs, note this is customized to my needs.
 ![image](https://github.com/user-attachments/assets/3223e210-52b5-4cc9-9bbf-f8c50c597d82)
 
 

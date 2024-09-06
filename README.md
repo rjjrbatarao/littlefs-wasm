@@ -20,6 +20,7 @@ git submodule update --remote --merge
 finally
 make
 ```
+littlefs.js and littlefs.wasm is created in /dist folder
 Serve this under a webserver enable serving the application/wasm
 ![image](https://github.com/user-attachments/assets/6e9c7bc9-af79-4dc2-81a4-32e4b036c752)
 now you will get a download button served over the webserver

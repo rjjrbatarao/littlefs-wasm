@@ -68,14 +68,14 @@ const flash = new Uint8Array(BLOCK_COUNT * BLOCK_SIZE);
   const writeFile = littlefs.cwrap(
     'lfs_write_file',
     ['number'],
-    ['number', 'string', 'string', 'number']
+    ['number', 'string', 'string', 'number', 'number']
   );
 
 
   const writeDir = littlefs.cwrap(
     'lfs_write_dir',
     ['number'],
-    ['number', 'string', 'string']
+    ['number', 'string', 'number']
   );
 
   const config = littlefs._new_lfs_config(
@@ -92,8 +92,8 @@ const flash = new Uint8Array(BLOCK_COUNT * BLOCK_SIZE);
   littlefs._lfs_unmount(lfs);
   
   const fileData = JSON.stringify({success:true});
-  writeDir(lfs, 'data', 'data/config.json');
-  writeFile(lfs, 'data/config.json', fileData, fileData.length);
+  writeDir(lfs, 'data', Date.now()/1000);
+  writeFile(lfs, 'data/config.json', fileData, fileData.length, Date.now()/1000);
   console.log("flash content: ",flash);
   littlefs._free(lfs);
   littlefs._free(config);

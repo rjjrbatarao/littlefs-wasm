@@ -1,7 +1,6 @@
 /**
  * A bunch of helper methods / glue code for using littlefs from JavaScript
  */
-#include <sys/stat.h>
 #include "lfs.h"
 
 lfs_t *new_lfs() {
@@ -37,24 +36,22 @@ const struct lfs_config *new_lfs_config(void *read, void *prog, void *erase, voi
     return result;
 }
 
-void lfs_write_file(lfs_t *lfs, char *name, void *data, size_t size) {
+void lfs_write_file(lfs_t *lfs, char *name, void *data, size_t size, size_t epoch) {
     lfs_file_t file;
-	struct stat sbuf;
     lfs_file_open(lfs, &file, name, LFS_O_RDWR | LFS_O_CREAT);
     lfs_file_write(lfs, &file, data, size);
     lfs_file_close(lfs, &file);
-	uint32_t ftime = sbuf.st_mtime;
+	uint32_t ftime = epoch;
 	lfs_setattr(lfs, name, 't', (const void *)&ftime, sizeof(ftime));
 	lfs_setattr(lfs, name, 'c', (const void *)&ftime, sizeof(ftime));
 	
 }
 
-void lfs_write_dir(lfs_t *lfs, char *name){
-	lfs_dir_t dir;
-	struct stat sbuf;	
+void lfs_write_dir(lfs_t *lfs, char *name, size_t epoch){
+	lfs_dir_t dir;	
 	lfs_dir_open(lfs, &dir, name);
 	lfs_mkdir(lfs, name);
-	uint32_t ftime = sbuf.st_mtime;
+	uint32_t ftime = epoch;
 	lfs_setattr(lfs, name, 't', (const void *)&ftime, sizeof(ftime));
 	lfs_setattr(lfs, name, 'c', (const void *)&ftime, sizeof(ftime));
 	lfs_dir_close(lfs, &dir);
